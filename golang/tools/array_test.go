@@ -6,7 +6,7 @@ import (
 )
 
 // go test -v ./array_test.go array.go -test.run TestInArray
-func TestInArray(t *testing.T) {
+func TestIn(t *testing.T) {
 	type args struct {
 		target interface{}
 		arr    interface{}
@@ -59,7 +59,7 @@ func TestInArray(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := InArray(tt.args.target, tt.args.arr); got != tt.want {
+			if got := In(tt.args.target, tt.args.arr); got != tt.want {
 				t.Errorf("InArray() = %v, want %v", got, tt.want)
 			}
 		})
@@ -67,7 +67,7 @@ func TestInArray(t *testing.T) {
 }
 
 // go test -v ./array_test.go array.go -test.run TestIntersection
-func TestIntersection(t *testing.T) {
+func TestIntersect(t *testing.T) {
 	type args struct {
 		a interface{}
 		b interface{}
@@ -89,7 +89,7 @@ func TestIntersection(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var ret []int64
-			if got := Intersection(tt.args.a, tt.args.b, &ret); !reflect.DeepEqual(ret, tt.want) {
+			if got := Intersect(tt.args.a, tt.args.b, &ret); !reflect.DeepEqual(ret, tt.want) {
 				t.Errorf("Intersection() = %v, want %v", got, tt.want)
 			}
 		})
@@ -127,7 +127,7 @@ func TestDiffArray(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var ret []int64
-			if got := DiffArray(tt.args.X, tt.args.Y, &ret); !reflect.DeepEqual(ret, tt.want) {
+			if got := Diff(tt.args.X, tt.args.Y, &ret); !reflect.DeepEqual(ret, tt.want) {
 				t.Errorf("DiffArray() = %v, want %v", got, tt.want)
 			}
 		})
