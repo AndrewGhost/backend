@@ -88,7 +88,8 @@ func TestIntersection(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Intersection(tt.args.a, tt.args.b); !reflect.DeepEqual(got, tt.want) {
+			var ret []int64
+			if got := Intersection(tt.args.a, tt.args.b, &ret); !reflect.DeepEqual(ret, tt.want) {
 				t.Errorf("Intersection() = %v, want %v", got, tt.want)
 			}
 		})
@@ -125,7 +126,8 @@ func TestDiffArray(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := DiffArray(tt.args.X, tt.args.Y); !reflect.DeepEqual(got, tt.want) {
+			var ret []int64
+			if got := DiffArray(tt.args.X, tt.args.Y, &ret); !reflect.DeepEqual(ret, tt.want) {
 				t.Errorf("DiffArray() = %v, want %v", got, tt.want)
 			}
 		})
@@ -145,16 +147,18 @@ func TestUnique(t *testing.T) {
 		{
 			name: "去重-int64-slice",
 			args: args{
-				[]int64{1, 2, 2, 3, 4, 4, 5},
+				slice: []int64{1, 2, 2, 3, 4, 4, 5},
 			},
 			want: []int64{1, 2, 3, 4, 5},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Unique(tt.args.slice); !reflect.DeepEqual(got, tt.want) {
+			var ret []int64
+			if got := Unique(tt.args.slice, &ret); !reflect.DeepEqual(ret, tt.want) {
 				t.Errorf("Unique() = %v, want %v", got, tt.want)
 			}
+			t.Log(ret)
 		})
 	}
 }
